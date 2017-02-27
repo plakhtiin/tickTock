@@ -1,0 +1,19 @@
+.user-list li{
+    cursor: pointer;
+}
+.jumbotron .glyphicon{
+    font-size: 80px;
+}
+.gocrazy{
+    background: red;
+}
+.user-name-container{
+    background-color: #9060d3;
+    border-radius: 5px;
+    min-height: 50px;
+    padding: 6px 12px;
+    font-size: 28px;
+}
+.timer-switch{
+    padding: 18px 6px;
+}
