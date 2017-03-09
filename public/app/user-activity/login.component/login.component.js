@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var UserLogIn = (function () {
     function UserLogIn() {
@@ -26,15 +27,15 @@ var LogInComponent = (function () {
     LogInComponent.prototype.onSubmit = function () {
         console.log('log in!');
     };
-    LogInComponent = __decorate([
-        core_1.Component({
-            selector: 'log-in',
-            templateUrl: './app/user-activity/login.component/login.component.html',
-            styleUrls: ['./app/user-activity/login.component/login.component.css']
-        }), 
-        __metadata('design:paramtypes', [])
-    ], LogInComponent);
     return LogInComponent;
 }());
+LogInComponent = __decorate([
+    core_1.Component({
+        selector: 'log-in',
+        templateUrl: './app/user-activity/login.component/login.component.html',
+        styleUrls: ['./app/user-activity/login.component/login.component.css']
+    }),
+    __metadata("design:paramtypes", [])
+], LogInComponent);
 exports.LogInComponent = LogInComponent;
 //# sourceMappingURL=login.component.js.map

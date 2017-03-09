@@ -8,20 +8,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var StatisticComponent = (function () {
     function StatisticComponent() {
     }
     StatisticComponent.prototype.ngOnInit = function () {
     };
-    StatisticComponent = __decorate([
-        core_1.Component({
-            selector: 'statistic',
-            templateUrl: './app/user-activity/statistic.component/statistic.component.html'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], StatisticComponent);
     return StatisticComponent;
 }());
+StatisticComponent = __decorate([
+    core_1.Component({
+        selector: 'statistic',
+        templateUrl: './app/user-activity/statistic.component/statistic.component.html'
+    }),
+    __metadata("design:paramtypes", [])
+], StatisticComponent);
 exports.StatisticComponent = StatisticComponent;
 //# sourceMappingURL=statistic.component.js.map

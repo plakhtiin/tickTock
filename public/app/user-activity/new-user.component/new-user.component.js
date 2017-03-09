@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var NewUserComponent = (function () {
     function NewUserComponent() {
@@ -15,14 +16,14 @@ var NewUserComponent = (function () {
     }
     NewUserComponent.prototype.ngOnInit = function () {
     };
-    NewUserComponent = __decorate([
-        core_1.Component({
-            selector: 'new-user',
-            templateUrl: './app/user-activity/new-user.component/new-user.component.html'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], NewUserComponent);
     return NewUserComponent;
 }());
+NewUserComponent = __decorate([
+    core_1.Component({
+        selector: 'new-user',
+        templateUrl: './app/user-activity/new-user.component/new-user.component.html'
+    }),
+    __metadata("design:paramtypes", [])
+], NewUserComponent);
 exports.NewUserComponent = NewUserComponent;
 //# sourceMappingURL=new-user.component.js.map
