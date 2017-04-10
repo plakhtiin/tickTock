@@ -1,0 +1,20 @@
+<div class="container">
+    <form #form="ngForm" (ngSubmit)="onSubmit()" *ngIf="userLogIn" class="user-log-in">
+        <div class="row">
+            <div class="form-group col-md-8" [ngClass]="{'has-error': email.invalid && email.touched}">
+                <input type="text" class="form-control" name="email" placeholder="Email" required
+                       [(ngModel)]="userLogIn.email" #email="ngModel">
+                <span class="help-block" *ngIf="email.invalid && email.touched">email is required.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-8">
+                <input type="password" class="form-control" name="password" placeholder="Password" required
+                       [(ngModel)]="userLogIn.password" #password="ngModel">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-lg btn-block btn-info" [disabled]="form.invalid">Log In</button>
+            </div>
+        </div>
+    </form>
+</div>
