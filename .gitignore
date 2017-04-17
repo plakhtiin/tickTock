@@ -5,5 +5,7 @@ bower_components/
 tmp
 .DS_Store
 .idea
-public/node_modules/
-public/dist
+/front/bower_components
+/front/node_modules
+/api/node_modules
+/front/app/node_modules

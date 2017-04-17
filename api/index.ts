@@ -36,7 +36,7 @@ let listener = app.listen(port, () => {
 
 app.use(bodyParser.json())
     .get('/', function(req, res, next) {
-        res.sendFile(__dirname + '/public/index.html');
+        res.sendFile(__dirname + '/front/public/index.html');
     })
     .use(express.static(__dirname + '/public'))
     .post("/api/login", function(req, res) {
