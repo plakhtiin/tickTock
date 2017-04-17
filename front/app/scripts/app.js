@@ -4,7 +4,10 @@
     angular.module('app', [
         'ui.router',
         'ngMaterial',
-        'ngAnimate'
+        'ngAnimate',
+        'ui.bootstrap',
+        'angular-md5',
+        'ngCookies'
     ]).run(RunApp);
 
     function RunApp($urlRouter, $state, $location) {

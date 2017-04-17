@@ -10,9 +10,12 @@
   "dependencies": {
     "angular": "latest",
     "angular-material": "latest",
-    "angular-route": "latest",
     "bootstrap": "latest",
     "angular-ui-router": "latest",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "angular-ui-bootstrap":"^2.5.0",
+    "jquery": "latest",
+    "angular-md5": "latest",
+    "angular-cookies": "latest"
   }
 }
