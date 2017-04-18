@@ -19,7 +19,8 @@
                             url: '/login',
                             templateUrl: './scripts/user-activity/login.component/login.component.html',
                             title: 'Statistic',
-                            controller: 'loginCtrl'
+                            controller: 'loginCtrl',
+                            controllerAs: 'vm'
                         })
                         .state('statistics', {
                             url: '/statistics',

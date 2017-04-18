@@ -6,10 +6,13 @@
 
     angular
         .module('app')
-
-        .controller('mainCtrl', function ($scope) {
+        .controller('mainCtrl', mainCtrl);
+    mainCtrl.$inject = ['$scope', 'loginService', '$state'];
+    function mainCtrl($scope,loginService, $state) {
 
             var vm = this;
-
-        })
+            loginService.getToken().then(function (data) {
+                if(!data) $state.go('login');
+            })
+        }
 })();
