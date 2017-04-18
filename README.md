@@ -3,14 +3,14 @@
 This project is an application skeleton for a typical [AngularJS][angularjs] and [Electron][electron] desktop app.
 
 ### Install Dependencies
-####In directory /front
+#### In directory /front
 ```
 npm install
 ```
 ```
 bower install
 ```
-####In directory /front/app
+#### In directory /front/app
 ```
 npm install
 ```
@@ -30,7 +30,7 @@ two new folders in your project.
 makes it easier to serve the files by a web server.*
 
 ### Run the Application
-####In directory /front
+#### In directory /front
 ```
 gulp start
 ```
