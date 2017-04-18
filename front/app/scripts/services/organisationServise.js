@@ -1,36 +1,55 @@
 'use strict';
 
 angular.module('app')
-    .service('organisationService', ['$http', 'loginService', function($http, loginService) {
+    .service('organisationService', ['$http', 'loginService', '$q', function($http, loginService, $q) {
 
         var organisationService = {};
 
         organisationService.getPoints = function(orgId, date) {
-            return $http({
-                url: '/api/organisation/points/' + orgId+ "/" + loginService.getToken(),
-                method: 'GET',
-            });
-        }
+            var deferred = $q.defer();
+            $http.get('/api/organisation/points/' + orgId+ "/" + loginService.getToken())
+                .success(function (response) {
+                    deferred.resolve(response);
+                })
+                .error(function (error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        };
 
          organisationService.updatePoint = function(pointId, data) {
-            return $http({
-                url: '/api/updatepoint/' + pointId+ "/" + loginService.getToken(),
-                method: 'POST',
-                data: data
-            });
-        }
+             var deferred = $q.defer();
+             $http.post('/api/updatepoint/' + pointId+ "/" + loginService.getToken(), data)
+                 .success(function (response) {
+                     deferred.resolve(response);
+                 })
+                 .error(function (error) {
+                     deferred.reject(error);
+                 });
+             return deferred.promise;
+        };
 
         organisationService.getOrganization = function(orgId, date) {
-            return $http({
-                url: '/api/organization/' + orgId +  "/" + loginService.getToken(),
-                method: 'GET',
-            });
-        }
+            var deferred = $q.defer();
+            $http.get('/api/organization/' + orgId +  "/" + loginService.getToken())
+                .success(function (response) {
+                    deferred.resolve(response);
+                })
+                .error(function (error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        };
         organisationService.getOrganizations = function(userId) {
-            return $http({
-                url: '/api/organizations/' + userId + "/" + loginService.getToken(),
-                method: 'GET',
-            });
+            var deferred = $q.defer();
+            $http.get('/api/organizations/' + userId +  "/" + loginService.getToken())
+                .success(function (response) {
+                    deferred.resolve(response);
+                })
+                .error(function (error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
         };
 
         return organisationService;

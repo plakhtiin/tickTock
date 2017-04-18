@@ -47,7 +47,7 @@ angular.module('app')
 			} else {
 				$location.path("/login");
 			}
-		}
+		};
 
 
 		return loginService;
