@@ -4,12 +4,12 @@
             <div class="user-name-container">
                 <h4>
                     <i class="fa fa-user" aria-hidden="true"></i>
-                    Jack Test
+                    {{vm.userData.firstName + ' ' + vm.userData.lastName}}
                 </h4>
             </div>
         </div>
         <div class="col-md-4 col-xs-4 col-sm-4">
-            <button class="btn btn-lg btn-default">Log out</button>
+            <button class="btn btn-sm btn-default" ng-click="vm.logOut()">Log out</button>
         </div>
     </div>
     <div class="row">
@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-2 col-xs-2 col-sm-2">
             <div class="timer-switch">
-                <ui-switch size="large" color="#7a29a3" switchColor="#fff" checked></ui-switch>
+                <switch id="enabled" name="enabled" switchColor="#fff" ng-model="vm.toggleTimer" class="blue"></switch>
             </div>
         </div>
         <div class="col-md-4 col-xs-4 col-sm-4">

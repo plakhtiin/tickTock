@@ -4,6 +4,7 @@
 'use strict';
 var MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
+var moment = require('moment');
 
 var _db;
 module.exports = {
@@ -42,7 +43,7 @@ module.exports = {
     },
 
     getOrganization: function(orgId, cb) {
-        _db.collection("organizations").find({
+        _db.collection("organizations").findOne({
             _id: new ObjectID(orgId)
         }, function(err, result) {
             if (err) {
@@ -54,7 +55,7 @@ module.exports = {
     },
 
     getAdminUser: function(username, password, cb) {
-        _db.collection("users").find({
+        _db.collection("users").findOne({
             username: username,
             password: password
         }, function(err, result) {
@@ -77,7 +78,7 @@ module.exports = {
         });
     },
     getAdminUserById: function(userId, cb) {
-        _db.collection("users").find({
+        _db.collection("users").findOne({
             _id: new ObjectID(userId)
         }, function(err, result) {
             if (err) {
@@ -305,6 +306,25 @@ module.exports = {
                 // result.toArray(function(err, day) {
                 //     cb(day[0]);
                 // });
+            }
+        });
+    },
+
+    setToken: function(userId, token, cb) {
+        _db.collection("tokens").insert({
+            userId: userId.toString(),
+            token: token,
+            time: moment().add(1, 'day').format('hh:mm:ss DD/MM/YYYY')
+        }, function(err, result) {
+            if (err) {
+                cb(err, null);
+            } else {
+                var obj = {
+                    id: userId.toString(),
+                    token: token,
+                    time: moment().add(1, 'day').format('hh:mm:ss DD/MM/YYYY')
+                };
+                cb(null, obj);
             }
         });
     }

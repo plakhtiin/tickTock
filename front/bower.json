@@ -13,9 +13,11 @@
     "bootstrap": "latest",
     "angular-ui-router": "latest",
     "font-awesome": "^4.7.0",
-    "angular-ui-bootstrap":"^2.5.0",
+    "angular-ui-bootstrap": "^2.5.0",
     "jquery": "latest",
     "angular-md5": "latest",
-    "angular-cookies": "latest"
+    "angular-cookies": "latest",
+    "moment": "^2.18.1",
+    "angular-ui-switch": "^0.1.1"
   }
 }

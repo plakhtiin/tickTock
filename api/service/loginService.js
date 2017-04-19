@@ -9,8 +9,8 @@ loginService.prototype.getUser = function(username, password, cb) {
             cb(err, null);
         } else {
             if (result) {
-                adminInfo = {};
-                adminInfo.id = result._id
+                var adminInfo = result;
+                adminInfo.id = result._id.toString();
                 adminInfo.token = jsonwebtoken.sign({
                     username: username,
                     password: password

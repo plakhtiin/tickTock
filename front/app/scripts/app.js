@@ -7,11 +7,15 @@
         'ngAnimate',
         'ui.bootstrap',
         'angular-md5',
-        'ngCookies'
-    ]).run(RunApp);
+        'ngCookies',
+        'uiSwitch'
+    ]).run(RunApp).config(['$qProvider', function ($qProvider) {
+        $qProvider.errorOnUnhandledRejections(false);
+    }]);
 
     function RunApp($urlRouter, $state, $location) {
         $state.go('start');
+        $location.path("/start");
     }
 
 })();

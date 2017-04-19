@@ -13,7 +13,8 @@
                             url: '/start',
                             templateUrl: './scripts/app.component.html',
                             title: 'Start',
-                            controller: 'mainCtrl'
+                            controller: 'mainCtrl',
+                            controllerAs: 'vm'
                         })
                         .state('login', {
                             url: '/login',

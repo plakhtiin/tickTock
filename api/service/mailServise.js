@@ -1,5 +1,5 @@
 var db = require('../db');
-var manegeUserService = require('./manegeUserService');
+var manageUserService = require('./manageUserService');
 var async = require('async');
 var schedule = require('node-schedule');
 var nodemailer = require("nodemailer");
@@ -174,7 +174,7 @@ function creaReport(organisations, email) {
             }
             for (var i = 0; i < orgArr.length; i++) {
                 asyncArr.push(function(asyncCallback) {
-                    manegeUserService.getPointScedule(orgArr[count]._id.toString(), date, function(err, shedule) {
+                    manageUserService.getPointScedule(orgArr[count]._id.toString(), date, function(err, shedule) {
                         if (err) {
                             console.log(err, null);
                         } else {

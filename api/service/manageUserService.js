@@ -1,9 +1,9 @@
 var db = require('../db');
 var async = require('async');
 
-function ManegeUserService() {}
+function ManageUserService() {}
 
-ManegeUserService.prototype.getUserData = function(userId, cb) {
+ManageUserService.prototype.getUserData = function(userId, cb) {
     async.waterfall([
         function(callback) {
             db.getAdminUserById(userId, function(err, user) {
@@ -32,7 +32,7 @@ ManegeUserService.prototype.getUserData = function(userId, cb) {
     });
 };
 
-ManegeUserService.prototype.getUserOrganisations = function(userId, cb) {
+ManageUserService.prototype.getUserOrganisations = function(userId, cb) {
     db.getUserOrganisation(userId, function(err, organisations) {
         if (err) {
             cb(err, null);
@@ -42,7 +42,7 @@ ManegeUserService.prototype.getUserOrganisations = function(userId, cb) {
     });
 };
 
-ManegeUserService.prototype.getOrganizationDb = function(userId, cb) {
+ManageUserService.prototype.getOrganizationDb = function(userId, cb) {
     db.getOrganization(userId, function(err, result) {
         if (err) {
             cb(err, null);
@@ -54,7 +54,7 @@ ManegeUserService.prototype.getOrganizationDb = function(userId, cb) {
 };
 
 
-ManegeUserService.prototype.getOrganisationPoints = function(organisationId, cb) {
+ManageUserService.prototype.getOrganisationPoints = function(organisationId, cb) {
     db.getOrganisationPoints(organisationId, function(err, result) {
         if (err) {
             cb(err, null);
@@ -65,7 +65,7 @@ ManegeUserService.prototype.getOrganisationPoints = function(organisationId, cb)
     });
 };
 
-ManegeUserService.prototype.updatePoint = function(pointId, data, cb) {
+ManageUserService.prototype.updatePoint = function(pointId, data, cb) {
     db.updatePoint(pointId, data, function(err, result) {
         if (err) {
             cb(err, null);
@@ -75,7 +75,7 @@ ManegeUserService.prototype.updatePoint = function(pointId, data, cb) {
     });
 };
 
-ManegeUserService.prototype.updateUser = function(userId, data, cb) {
+ManageUserService.prototype.updateUser = function(userId, data, cb) {
     db.updateUser(userId, data, function(err, result) {
         if (err) {
             cb(err, null);
@@ -85,7 +85,7 @@ ManegeUserService.prototype.updateUser = function(userId, data, cb) {
     });
 };
 
-ManegeUserService.prototype.getPoint = function(pointId, cb) {
+ManageUserService.prototype.getPoint = function(pointId, cb) {
     db.getPoint(pointId, function(err, point) {
         if (err) {
             cb(err)
@@ -95,7 +95,7 @@ ManegeUserService.prototype.getPoint = function(pointId, cb) {
     })
 };
 
-ManegeUserService.prototype.getDeltaSchedule = function(data, cb) {
+ManageUserService.prototype.getDeltaSchedule = function(data, cb) {
     var self = this
 
     data.dateStart = new Date(data.dateStart).setHours(1, 0, 0)
@@ -160,7 +160,7 @@ ManegeUserService.prototype.getDeltaSchedule = function(data, cb) {
 };
 
 
-ManegeUserService.prototype.getPointScedule = function(orgId, date, cb) {
+ManageUserService.prototype.getPointScedule = function(orgId, date, cb) {
     var self = this;
     // date  = new Date("Wed Feb 17 2016 08:18:15 GMT+0200 (EET)");    
     // var startTime = new Date(new Date(date).setHours(1, 0, 0));
@@ -224,7 +224,7 @@ ManegeUserService.prototype.getPointScedule = function(orgId, date, cb) {
 };
 
 
-ManegeUserService.prototype.disciplineAnalysis = function(orgId, points, cb) {
+ManageUserService.prototype.disciplineAnalysis = function(orgId, points, cb) {
             // for(var i = 0; i < points.weekTime.length; i++){
 
     for (var i = 0; i < points.length; i++) {
@@ -284,4 +284,4 @@ ManegeUserService.prototype.disciplineAnalysis = function(orgId, points, cb) {
 
 
 };
-module.exports = new ManegeUserService();
+module.exports = new ManageUserService();

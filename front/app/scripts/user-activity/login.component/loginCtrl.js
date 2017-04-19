@@ -4,17 +4,19 @@
 angular
     .module('app')
     .controller('loginCtrl', loginCtrl);
-loginCtrl.$inject = ['$scope', 'loginService'];
-function loginCtrl($scope, loginService) {
+loginCtrl.$inject = ['$scope', 'loginService', '$state'];
+function loginCtrl($scope, loginService, $state) {
     var vm = this;
 
     vm.userLogIn = {
-        email: '',
+        username: '',
         password: ''
     };
     vm.submitLoginForm = function () {
-        loginService.login(vm.userLogIn.email ,vm.userLogIn.password).then(function (data) {
-           console.log(data);
+        loginService.login(vm.userLogIn.username ,vm.userLogIn.password).then(function(data){
+            $state.go('start');
+        }, function (err) {
+
         });
-    }
+    };
 }

@@ -9,7 +9,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var server = require("http");
 var loginService = require("./service/loginService");
-var manageUserService = require("./service/manegeUserService");
+var manageUserService = require("./service/manageUserService");
 db.connectToServer(function (err) {
     if (err) {
         console.log(err);
@@ -17,12 +17,9 @@ db.connectToServer(function (err) {
     else {
     }
 });
-// let manegeUserService = require('./service/manegeUserService');
 var app = express();
 var port = process.env.PORT || 8888;
 var io = socketIo.listen(server);
-// require ('./sockets/socket')(io);
-// let loginService = require('./service/loginService');
 server.createServer(app);
 var listener = app.listen(port, function () {
     console.log('Server listening at port ' + listener.address().port);
@@ -33,12 +30,22 @@ app.use(bodyParser.json())
 })
     .use(express.static(__dirname + '/public'))
     .post("/api/login", function (req, res) {
-    loginService.getUser(req.body.username, req.body.password, function (err, adninUser) {
+    loginService.getUser(req.body.username, req.body.password, function (err, adminUser) {
         if (err) {
             res.send(err);
         }
         else {
-            res.send(adninUser);
+            setToken(adminUser, function(error, result){
+                if(error){
+                    res.send(error);
+                }else if(result){
+                    var obj = {
+                        userData: adminUser,
+                        result: result
+                    };
+                    res.send(obj);
+                }
+            });
         }
     });
 })
@@ -212,3 +219,13 @@ app.use(bodyParser.json())
         }
     });
 });
+
+function setToken(userData, cb) {
+    db.setToken(userData.id, userData.token, function(err, res){
+        if(err){
+            cb(err, null);
+        }else if(res){
+            cb(null, res);
+        }
+    })
+}

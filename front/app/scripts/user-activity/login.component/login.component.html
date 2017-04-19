@@ -1,10 +1,10 @@
 <div class="container">
     <form form="login" class="user-log-in">
         <div class="row">
-            <div class="form-group col-md-12 col-xs-12" ng-class="{'has-error': login.email.invalid && login.email.touched}">
-                <input type="text" class="form-control" name="email" placeholder="Email" required
-                        ng-model="vm.userLogIn.email">
-                <span class="help-block" ng-if="login.email.invalid && login.email.touched">email is required.</span>
+            <div class="form-group col-md-12 col-xs-12" ng-class="{'has-error': login.username.invalid && login.username.touched}">
+                <input type="text" class="form-control" name="username" placeholder="Username" required
+                        ng-model="vm.userLogIn.username">
+                <span class="help-block" ng-if="login.username.invalid && login.username.touched">username is required.</span>
             </div>
         </div>
         <div class="row">
