@@ -8,10 +8,10 @@ angular.module('app')
         messageService.sendMessage = function(pointId, msg) {
 	        var deferred = $q.defer();
 	        $http.post('/api/sendmessage/' + pointId + "/" + loginService.getToken(), msg)
-		        .success(function (response) {
+		        .then(function (response) {
 			        deferred.resolve(response);
 		        })
-		        .error(function (error) {
+		        .catch(function (error) {
 			        deferred.reject(error);
 		        });
 	        return deferred.promise;

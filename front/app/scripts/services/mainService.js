@@ -1,28 +1,28 @@
 'use strict';
 
 angular.module('app')
-    .service('mainService', ['$http', "loginService", "$q",  function($http, loginService, $q) {
+    .service('mainService', ['config', '$http', "loginService", "$q",  function(config, $http, loginService, $q) {
 
         var mainService = {};
 
         mainService.getUser = function(userId) {
 	        var deferred = $q.defer();
-	        $http.get('/api/user/data/' + userId +'/'+ loginService.getToken())
-                .success(function (response) {
+	        $http.get(config.serverUrl + '/api/user/data/' + userId +'/'+ loginService.getToken())
+                .then(function (response) {
 		        deferred.resolve(response);
 	        })
-		        .error(function (error) {
+		        .catch(function (error) {
 			        deferred.reject(error);
 		        });
 	        return deferred.promise;
         };
          mainService.updateUser = function(userId, data) {
 	         var deferred = $q.defer();
-	         $http.post( '/api/updateuser/data/' + userId +'/'+ loginService.getToken(), data)
-		         .success(function (response) {
+	         $http.post(config.serverUrl + '/api/updateuser/data/' + userId +'/'+ loginService.getToken(), data)
+		         .then(function (response) {
 			         deferred.resolve(response);
 		         })
-		         .error(function (error) {
+		         .catch(function (error) {
 			         deferred.reject(error);
 		         });
 	         return deferred.promise;

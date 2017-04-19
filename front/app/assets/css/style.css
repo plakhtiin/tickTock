@@ -1,0 +1,11 @@
+body{
+    background-image: url("../Login_Form.png");
+    background-size: cover;
+    padding: 20px;
+}
+.user-log-in{
+    background-image: url("../login_form.png") !important;
+    background-repeat: round;
+    border-radius: 10px;
+    padding: 25px;;
+}

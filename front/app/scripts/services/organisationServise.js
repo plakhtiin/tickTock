@@ -8,10 +8,10 @@ angular.module('app')
         organisationService.getPoints = function(orgId, date) {
             var deferred = $q.defer();
             $http.get('/api/organisation/points/' + orgId+ "/" + loginService.getToken())
-                .success(function (response) {
+                .then(function (response) {
                     deferred.resolve(response);
                 })
-                .error(function (error) {
+                .catch(function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;
@@ -20,10 +20,10 @@ angular.module('app')
          organisationService.updatePoint = function(pointId, data) {
              var deferred = $q.defer();
              $http.post('/api/updatepoint/' + pointId+ "/" + loginService.getToken(), data)
-                 .success(function (response) {
+                 .then(function (response) {
                      deferred.resolve(response);
                  })
-                 .error(function (error) {
+                 .catch(function (error) {
                      deferred.reject(error);
                  });
              return deferred.promise;
@@ -32,10 +32,10 @@ angular.module('app')
         organisationService.getOrganization = function(orgId, date) {
             var deferred = $q.defer();
             $http.get('/api/organization/' + orgId +  "/" + loginService.getToken())
-                .success(function (response) {
+                .then(function (response) {
                     deferred.resolve(response);
                 })
-                .error(function (error) {
+                .catch(function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;
@@ -43,10 +43,10 @@ angular.module('app')
         organisationService.getOrganizations = function(userId) {
             var deferred = $q.defer();
             $http.get('/api/organizations/' + userId +  "/" + loginService.getToken())
-                .success(function (response) {
+                .then(function (response) {
                     deferred.resolve(response);
                 })
-                .error(function (error) {
+                .catch(function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;

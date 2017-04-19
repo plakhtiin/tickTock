@@ -7,10 +7,10 @@ angular.module('app')
         scheduleService.getScheduleByDay = function(data) {
             var deferred = $q.defer();
             $http.post('/api/schedule/delta/' + loginService.getToken(), data)
-                .success(function (response) {
+                .then(function (response) {
                     deferred.resolve(response);
                 })
-                .error(function (error) {
+                .catch(function (error) {
                     deferred.reject(error);
                 });
             return deferred.promise;
@@ -19,10 +19,10 @@ angular.module('app')
          scheduleService.getPoint = function(pointId, date) {
              var deferred = $q.defer();
              $http.get('/api/point/' + pointId+ "/" + loginService.getToken())
-                 .success(function (response) {
+                 .then(function (response) {
                      deferred.resolve(response);
                  })
-                 .error(function (error) {
+                 .catch(function (error) {
                      deferred.reject(error);
                  });
              return deferred.promise;

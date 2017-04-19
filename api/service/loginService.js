@@ -4,7 +4,6 @@ var jsonwebtoken = require('jsonwebtoken');
 function loginService() {}
 
 loginService.prototype.getUser = function(username, password, cb) {
-
     db.getAdminUser(username, password, function(err, result) {
         if (err) {
             cb(err, null);

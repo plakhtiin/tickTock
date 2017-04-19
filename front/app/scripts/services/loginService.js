@@ -1,6 +1,6 @@
 'use strict';
 angular.module('app')
-	.service('loginService', ['$http', 'md5', '$cookies', '$location', '$q', function ($http, md5, $cookies, $location, $q) {
+	.service('loginService', ['config', '$http', 'md5', '$cookies', '$location', '$q', function (config, $http, md5, $cookies, $location, $q) {
 
 		var loginService = {};
 
@@ -8,19 +8,20 @@ angular.module('app')
 			var deferred = $q.defer();
 			var params = {
 				username: username,
-				password: md5.createHash(username + password)
+				// password: md5.createHash(username + password)
+				password: password
 
 			};
 
-			$http.post('/api/login', params)
-				.success(function (response) {
+			$http.post(config.serverUrl + '/api/login', params)
+				.then(function (response) {
 					$cookies.put("authToken", response.token);
 					$cookies.put("userId", response.id);
 					$location.path("/");
 					// cb(response.id)
 					deferred.resolve(response.id);
 				})
-				.error(function (error) {
+				.catch(function (error) {
 					deferred.reject(error);
 				});
 			return deferred.promise;
@@ -30,8 +31,10 @@ angular.module('app')
 			return $cookies.getObject("adminOrganisation");
 		};
 		loginService.getToken = function () {
-			return $cookies.get("authToken");
-		};
+            var deferred = $q.defer();
+            	deferred.resolve($cookies.get("authToken"));
+            return deferred.promise;
+        };
 		loginService.logOut = function () {
 			$cookies.remove("authToken");
 			$cookies.remove("adminOrganisation");

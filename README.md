@@ -32,7 +32,7 @@ makes it easier to serve the files by a web server.*
 ### Run the Application
 #### In directory /front
 ```
-gulp start
+gulp run
 ```
 
 
