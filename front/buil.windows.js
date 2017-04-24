@@ -47,7 +47,7 @@ function updateResources() {
 	// Replace Electron icon for your own.
 	var rcedit = require('rcedit');
 	rcedit(buildDir.path('electron.exe'), {
-		'icon': projectDir.path('resources/windows/icon.ico'),
+		'icon': projectDir.path('./resources/windows/icon.ico'),
 		'version-string': {
 			'ProductName': manifest.name,
 			'FileDescription': manifest.description,

@@ -15,11 +15,9 @@ angular.module('app')
 			$http.post(config.serverUrl + '/api/login', params)
 				.then(function (response) {
                     $rootScope.userData = response.data.userData;
-					$cookies.putObject("userData", response.data.userData);
-					$cookies.put("authToken", response.data.result.token);
-					$cookies.put("tokenTime", response.data.result.time);
-					$cookies.put("userId", response.data.result.id);
-					// cb(response.id)
+                    $rootScope.authToken = response.data.result.token;
+                    $rootScope.tokenTime = response.data.result.time;
+                    $rootScope.userId = response.data.result.id;
 					deferred.resolve(response.id);
 				})
 				.catch(function (error) {
@@ -30,16 +28,18 @@ angular.module('app')
 
 		loginService.getUserData = function () {
             var deferred = $q.defer();
-            var time = $cookies.get("tokenTime");
+            var time = $rootScope.tokenTime;
             if(time > moment().format('hh:mm:ss DD/MM/YYYY')){
-                $cookies.remove("authToken");
-                $cookies.remove("tokenTime");
+	            delete $rootScope.userData;
+	            delete $rootScope.authToken;
+	            delete $rootScope.tokenTime;
+	            delete $rootScope.userId;
                 $location.path("/login");
                 deferred.reject();
             }else {
                 var data  = JSON.parse($cookies.get("userData"));
                 if(!data){
-                    var id = $cookies.get("userId");
+                    var id = $rootScope.userId;
                     $http.get(config.serverUrl + '/api/user/data/' + id +'/'+ loginService.getToken())
                         .then(function (response) {
                             deferred.resolve(response);
@@ -55,25 +55,30 @@ angular.module('app')
         };
 		loginService.getToken = function () {
             var deferred = $q.defer();
-            var time = $cookies.get("tokenTime");
+            var time = $rootScope.tokenTime;
             if(time > moment().format('hh:mm:ss DD/MM/YYYY')){
-                $cookies.remove("authToken");
-                $cookies.remove("tokenTime");
+	            delete $rootScope.userData;
+	            delete $rootScope.authToken;
+	            delete $rootScope.tokenTime;
+	            delete $rootScope.userId;
                 $location.path("/login");
                 deferred.reject();
             }else {
-                deferred.resolve($cookies.get("authToken"));
+                deferred.resolve($rootScope.authToken);
             }
             return deferred.promise;
         };
 		loginService.logOut = function () {
-			$cookies.remove("authToken");
-            $cookies.remove("tokenTime");
+			delete $rootScope.userData;
+			delete $rootScope.authToken;
+			delete $rootScope.tokenTime;
+			delete $rootScope.userId;
             $location.path("/login");
+            console.log("/login");
 		};
 
 		loginService.isAuthenticated = function () {
-            var time = $cookies.get("tokenTime");
+            var time = $rootScope.tokenTime;;
 			if ($cookies.get('authToken') && time < moment().format('hh:mm:ss DD/MM/YYYY')){
 				if ($location.path() == "/login") {
 					$location.path("/start");

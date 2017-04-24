@@ -1,0 +1,22 @@
+<div class="container">
+    <form form="login" class="user-log-in">
+        <div class="row">
+            <div class="form-group col-md-12 col-xs-12" ng-class="{'has-error': login.username.invalid && login.username.touched}">
+                <input type="text" class="form-control" name="username" placeholder="Username" required
+                        ng-model="vm.userLogIn.username">
+                <span class="help-block" ng-if="login.username.invalid && login.username.touched">username is required.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12 col-xs-12">
+                <input type="password" class="form-control" name="password" placeholder="Password" required
+                       ng-model="vm.userLogIn.password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 col-xs-5">
+                <button type="submit" class="btn-default btn btn-sm" ng-disabled="login.invalid" ng-click="vm.submitLoginForm()">Log In</button>
+            </div>
+        </div>
+    </form>
+</div>

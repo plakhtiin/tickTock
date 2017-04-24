@@ -14,6 +14,10 @@
     "rcedit": "^0.3.0"
   },
   "dependencies": {
-    "electron-cookies": "^1.1.0"
+    "angular-ui-bootstrap": "^2.5.0",
+    "electron": "^1.6.5",
+    "electron-cookies": "^1.1.0",
+    "electron-screencapture": "^1.1.0",
+    "electron-screenshot": "^1.0.4"
   }
 }
