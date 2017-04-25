@@ -9,7 +9,6 @@ angular.module('app')
 			var params = {
 				username: username,
 				password: password
-
 			};
 
 			$http.post(config.serverUrl + '/api/login', params)

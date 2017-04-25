@@ -10,6 +10,8 @@ var bodyParser = require("body-parser");
 var server = require("http");
 var loginService = require("./service/loginService");
 var manageUserService = require("./service/manageUserService");
+var timeService = require('./service/timeService');
+
 db.connectToServer(function (err) {
     if (err) {
         console.log(err);
@@ -211,6 +213,25 @@ app.use(bodyParser.json())
                 }
                 else {
                     res.send(user);
+                }
+            });
+        }
+        else {
+            res.status(403).send('Error');
+        }
+    });
+})
+    .post('/api/schedule/start/:userId/:token', function (req, res) {
+    loginService.isValidToken(req.params.token, function (isValid) {
+        if (isValid) {
+	        timeService.startTime(req.params.userId, function (err, startTimeId) {
+                if (err) {
+                    // res.send(err);
+	                res.status(404).send('Error');
+                }
+                else {
+                    console.log(startTimeId);
+                    res.send(startTimeId);
                 }
             });
         }

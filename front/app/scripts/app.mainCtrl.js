@@ -7,8 +7,8 @@
 	angular
 		.module('app')
 		.controller('mainCtrl', mainCtrl);
-	mainCtrl.$inject = ['$scope', 'loginService', '$state', '$rootScope'];
-	function mainCtrl($scope, loginService, $state, $rootScope) {
+	mainCtrl.$inject = ['$scope', 'loginService', '$state', '$rootScope', 'trackingSystemService'];
+	function mainCtrl($scope, loginService, $state, $rootScope, trackingSystemService) {
 
 		var vm = this;
 		vm.userData = angular.copy($rootScope.userData);
@@ -33,6 +33,18 @@
 		function logOut() {
 			loginService.logOut();
 		}
+
+		$scope.$watch('vm.toggleTimer', function(newVal){
+			var id = $rootScope.timeId;
+			if(newVal === true)
+				trackingSystemService.startTime($rootScope.userId).then(function(id){
+					$rootScope.timeId = angular.copy(id);
+				});
+			else if(newVal === false)
+				trackingSystemService.stopTime(id).then(function(){
+					delete $rootScope.timeId;
+				});
+		});
 
 	}
 })();

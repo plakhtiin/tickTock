@@ -89,11 +89,12 @@ module.exports = {
         });
     },
 
-    startUserDay: function(userId, date, cb) {
+    startUserDay: function(userId, cb) {
         _db.collection("schedule").insert({
-            pointId: userId,
-            startTime: new Date(date),
-            endTime: new Date()
+	        userId: userId,
+            day: moment().format('DD-MM-YYYY'),
+            startTime: moment().format('DD-MM-YYYY hh:mm:ss'),
+            endTime: ''
         }, function(err, result) {
             if (err) {
                 console.log(err);
@@ -104,13 +105,10 @@ module.exports = {
     },
 
     findUserDay: function(userId, cb) {
-        var thisDay = new Date(new Date().setHours(6, 0, 0));
+        var thisDay = moment().format('DD-MM-YYYY');
         _db.collection("schedule").find({
-            pointId: userId,
-            startTime: {
-                $gte: thisDay
-
-            }
+            userId: userId,
+            day: thisDay
         }, function(err, result) {
             if (err) {
                 console.log(err);
@@ -122,12 +120,15 @@ module.exports = {
         });
     },
 
-    endUserDay: function(dayId, cb) {
-        _db.collection("schedule").update({
-            _id: dayId
+    endUserDay: function(userId, cb) {
+	    var thisDay = moment().format('DD-MM-YYYY');
+	    _db.collection("schedule").update({
+	        userId: userId,
+	        day: thisDay,
+	        endTime: ''
         }, {
             $set: {
-                "endTime": new Date()
+                "endTime": moment().format('DD-MM-YYYY hh:mm:ss')
             }
         }, function(err, result) {
             if (err) {
