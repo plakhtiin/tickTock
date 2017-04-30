@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
-    <title>Customer Manager</title>
+    <title>Tick-Tock time tracker</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <!-- build:css assets/css/app.css -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../bower_components/angular-ui-switch/angular-ui-switch.min.css">
-    <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css" />
-    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" class="rel">
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="./bower_components/angular-ui-switch/angular-ui-switch.min.css">
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.css" class="rel">
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <!-- endbuild -->
 </head>
 <body>
     <ui-view></ui-view>
     <!-- build:js scripts/vendor.js -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../bower_components/angular/angular.js"></script>
-    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="../bower_components/angular-animate/angular-animate.js"></script>
-    <script src="../bower_components/angular-aria/angular-aria.js"></script>
-    <script src="../bower_components/angular-material/angular-material.js"></script>
-    <script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
-    <script src="../bower_components/angular-md5/angular-md5.min.js"></script>
-    <script src="../bower_components/moment/moment.js"></script>
-    <script src="../bower_components/angular-ui-switch/angular-ui-switch.min.js"></script>
-    <script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.0/ui-bootstrap-tpls.min.js"></script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
-
+    <script>
+        document.addEventListener("keydown", function (e) {
+            if (e.which === 123) {
+                require('remote').getCurrentWindow().toggleDevTools();
+            } else if (e.which === 116) {
+                location.reload();
+            }
+        });
+    </script>
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="./bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="./bower_components/angular-md5/angular-md5.min.js"></script>
+    <script src="./bower_components/moment/moment.js"></script>
+    <script src="./bower_components/angular-ui-switch/angular-ui-switch.min.js"></script>
+    <script src="./node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
     <!-- endbuild -->
     <!-- build:app scripts/app.js -->
     <script src="./scripts/app.js"></script>
@@ -49,8 +54,6 @@
     <script src="./scripts/user-activity/login.component/loginCtrl.js"></script>
     <script src="./scripts/user-activity/settings.component/settingsCtrl.js"></script>
     <!-- endbuild -->
-    <script>
-        require('electron-cookies');
-    </script>
+
 </body>
 </html>

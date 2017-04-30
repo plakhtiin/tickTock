@@ -7,7 +7,7 @@ var jetpack = require('fs-jetpack');
 var projectDir;
 var buildDir;
 var manifest;
-var appDir;
+var appDir, nodeDir, bowerDir;
 
 function init() {
 	// Project directory is the root of the application
@@ -15,7 +15,9 @@ function init() {
 	// Build directory is our destination where the final build will be placed
 	buildDir = projectDir.dir('./dist', { empty: true });
 	// angular application directory
-	appDir = projectDir.dir('./build');
+	appDir = projectDir.dir('./app');
+	nodeDir = projectDir.dir('./node_modules/angular-ui-bootstrap');
+	bowerDir = projectDir.dir('./bower_components');
 	// angular application's package.json file
 	manifest = appDir.read('./package.json', 'json');
 	return Q();
@@ -32,9 +34,13 @@ function cleanupRuntime() {
 
 function createAsar() {
 	var deferred = Q.defer();
-	asar.createPackage(appDir.path(), buildDir.path('resources/app.asar'), function () {
-		deferred.resolve();
-	});
+    // asar.createPackage(nodeDir.path(), buildDir.path('resources/vendorNode.asar'), function () {
+    //     asar.createPackage(bowerDir.path(), buildDir.path('resources/vendorBower.asar'), function () {
+            asar.createPackage(appDir.path(), buildDir.path('resources/app.asar'), function () {
+                deferred.resolve();
+            });
+        // });
+    // });
 	return deferred.promise;
 }
 
@@ -42,15 +48,15 @@ function updateResources() {
 	var deferred = Q.defer();
 
 	// Copy your icon from resource folder into build folder.
-	projectDir.copy('resources/windows/icon.ico', buildDir.path('icon.ico'));
+	projectDir.copy('resources/windows/OfficeTime_icon_64.ico', buildDir.path('OfficeTime_icon_64.ico'));
 
 	// Replace Electron icon for your own.
 	var rcedit = require('rcedit');
 	rcedit(buildDir.path('electron.exe'), {
-		'icon': projectDir.path('./resources/windows/icon.ico'),
+		'icon': projectDir.path('./resources/windows/OfficeTime_icon_64.ico'),
 		'version-string': {
 			'ProductName': manifest.name,
-			'FileDescription': manifest.description,
+			'FileDescription': manifest.description
 		}
 	}, function (err) {
 		if (!err) {
@@ -86,7 +92,7 @@ function createInstaller() {
 		dest: projectDir.path('dist/Installer.exe'),
 		icon: buildDir.path('icon.ico'),
 		setupIcon: buildDir.path('icon.ico'),
-		banner: projectDir.path('resources/windows/banner.bmp'),
+		banner: projectDir.path('resources/windows/OfficeTime_icon.png'),
 	});
 	buildDir.write('installer.nsi', installScript);
 

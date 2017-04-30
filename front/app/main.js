@@ -1,5 +1,7 @@
 // Module to control application life.
-var app = require('app'); 
+var app = require('app');
+var path = require('path');
+// require('electron-debug')({showDevTools: true});
 
 // Module to create native browser window.
 var BrowserWindow = require('browser-window');
@@ -21,8 +23,11 @@ app.on('window-all-closed', function () {
 // initialization and is ready to create browser windows.
 app.on('ready', function () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 610, height: 250 });
-
+  mainWindow = new BrowserWindow({
+      width: 610,
+      height: 250 ,
+      icon: path.join(__dirname, 'assets/OfficeTime_icon.png')
+  })
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
@@ -36,4 +41,5 @@ app.on('ready', function () {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+    mainWindow.webContents.openDevTools()
 });

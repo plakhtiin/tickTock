@@ -10,8 +10,8 @@ var usemin = require('gulp-usemin');
 var uglify = require('gulp-uglify');
 var os = require('os');
 // var takeScreenshot = require('electron-screencapture');
-var screenshot = require('electron-screenshot')
-var release_windows = require('./buil.windows');
+// var screenshot = require('electron-screenshot')
+var release_windows = require('./build.windows');
 
 
 var projectDir = jetpack;
@@ -54,23 +54,13 @@ gulp.task('build', ['copy'], function () {
 
 
 gulp.task('run', function () {
-	childProcess.spawn(electron, ['./app'], {stdio: 'inherit'});
-	setTimeout(function(){
-	    screenshot({filename: 'olol.png', delay: 1000}, [cb])
-	}, 1000);
-
+	childProcess.spawn(
+	    electron,
+        ['./app'],
+        {stdio: 'inherit'}
+        );
 });
 
 gulp.task('build-electron', function () {
-    switch (os.platform()) {
-        case 'darwin':
-            // execute build.osx.js
-            break;
-        case 'linux':
-            //execute build.linux.js
-            break;
-        case 'win32':
-        console.log('sdf')
-            return release_windows.build();
-    }
+    return release_windows.build();
 });

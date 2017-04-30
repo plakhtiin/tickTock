@@ -28,9 +28,9 @@ var listener = app.listen(port, function () {
 });
 app.use(bodyParser.json())
     .get('/', function (req, res, next) {
-    res.sendFile(__dirname + '/front/public/index.html');
+    res.sendFile(__dirname.replace('/api', '') + '/front/app/index.html');
 })
-    .use(express.static(__dirname + '/public'))
+    .use(express.static(__dirname.replace('/api', '') + '/front/app'))
     .post("/api/login", function (req, res) {
     loginService.getUser(req.body.username, req.body.password, function (err, adminUser) {
         if (err) {

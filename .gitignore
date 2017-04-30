@@ -9,3 +9,5 @@ tmp
 /front/node_modules
 /api/node_modules
 /front/app/node_modules
+/front/packages/
+/front/dist/
