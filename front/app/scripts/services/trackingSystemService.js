@@ -7,13 +7,13 @@ angular.module('app')
 
         trackingSystemService.startTime = function(id) {
 	        var deferred = $q.defer();
-            var url = config.serverUrl + '/api/schedule/start/'+ id +'/' + $rootScope.authToken;
+            var url = config.serverUrl + '/api/schedule/start/'+ id +'/' + localStorage.authToken;
 	        $http.post(url)
 		        .then(function (response) {
-			        $rootScope.userData = response.data.userData;
-			        $rootScope.authToken = response.data.result.token;
-			        $rootScope.tokenTime = response.data.result.time;
-			        $rootScope.userId = response.data.result.id;
+                    localStorage.userData = JSON.stringify(response.data.userData);
+                    localStorage.authToken = response.data.result.token;
+                    localStorage.tokenTime = response.data.result.time;
+                    localStorage.userId = response.data.result.id;
 			        deferred.resolve(response.id);
 		        })
 		        .catch(function (error) {
@@ -23,7 +23,7 @@ angular.module('app')
         };
         trackingSystemService.stopTime = function(id) {
 	        var deferred = $q.defer();
-            var url = config.serverUrl + '/api/schedule/start/'+ id +'/' + $rootScope.authToken;
+            var url = config.serverUrl + '/api/schedule/start/'+ id +'/' + localStorage.authToken;
 	        // $http.post(url)
 		     //    .then(function (response) {
 			 //        $rootScope.userData = response.data.userData;

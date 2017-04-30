@@ -14,8 +14,8 @@
     }]);
 
     function RunApp($urlRouter, $state, $location) {
-        $state.go('start');
-        $location.path("/start");
+        $state.go('login');
+        $location.path("/login");
     }
 
 })();
