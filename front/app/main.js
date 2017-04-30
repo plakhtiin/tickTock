@@ -26,7 +26,7 @@ app.on('ready', function () {
   mainWindow = new BrowserWindow({
       titleBarStyle: 'hidden',
       width: 610,
-      height: 250 ,
+      height: 415 ,
       icon: iconPath
   });
   // and load the index.html of the app.
@@ -42,5 +42,5 @@ app.on('ready', function () {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 });

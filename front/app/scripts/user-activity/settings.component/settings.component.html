@@ -1,4 +1,51 @@
 <div class="container">
     <div class="row">
+        <div class="col-sm-6 col-xs-6">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6">
+                    <h3>
+                        <a href="javascript:void(0)" ui-sref="start">
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </a>
+                    </h3>
+                </div>
+                <div class="col-xs-6 col-sm-6">
+                    <h3>
+                        <i class="fa fa-user-plus pull-right" aria-hidden="true"></i>
+                    </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <h4 style="display: block;">Time interval</h4>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    <div class="col-sm-offset-3 col-sm-offset-3" uib-timepicker ng-model="vm.intervalTime"
+                         show-meridian="vm.isMeredian"></divclass>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    <button class="btn btn-success">Save changes</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xs-6 content" style="padding-right: inherit; overflow: hidden;">
+            <nav class="navbar navbar-default" style="width: 100%;left: 0;position: absolute;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                </div>
+            </nav>
+            <div>
+                <div class="list-group table-of-contents page" id="bs-example-navbar-collapse-1">
+                    <ul class="list-group content style-scrollbar" style="width: 100%;">
+                        <li class="list-group-item" ng-repeat="user in vm.users track by $index">
+                            {{user.name}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

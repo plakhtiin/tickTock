@@ -48,13 +48,22 @@
                             url: '/statistics',
                             templateUrl: './scripts/user-activity/statistic.component/statistic.component.html',
                             title: 'Statistic',
-                            controller: 'mainCtrl'
+                            controller: 'statisticCtrl',
+                            controllerAs: 'vm'
+                        })
+                        .state('settings', {
+                            url: '/settings',
+                            templateUrl: './scripts/user-activity/settings.component/settings.component.html',
+                            title: 'Settings',
+                            controller: 'settingsCtrl',
+                            controllerAs: 'vm'
                         })
                         .state('new-user', {
                             url: '/new-user',
                             templateUrl: './scripts/user-activity/new-user.component/new-user.component.html',
-                            title: 'Statistic',
-                            controller: 'mainCtrl'
+                            title: 'New User',
+                            controller: 'newUserCtrl',
+                            controllerAs: 'vm'
                         });
                 }
             ]
@@ -87,7 +96,6 @@ angular.module('app')
 			var params = {
 				username: username,
 				password: password
-
 			};
 
 			$http.post(config.serverUrl + '/api/login', params)
@@ -312,39 +320,64 @@ angular.module('app')
         return scheduleService;
     }]);
 
-// 'use strict';
+'use strict';
 
-// angular.module('trackingSystemModule')
-//     .service('trackingSystemService', ['$http', 'loginService', function($http, loginService) {
+angular.module('app')
+    .service('trackingSystemService', ['$http', 'loginService', 'config', '$q', '$rootScope', function($http, loginService, config, $q, $rootScope) {
 
-//         var trackingSystemService = {};
+        var trackingSystemService = {};
 
-//         trackingSystemService.getOrganisations = function(data) {
-//             return $http({
-//                 url: '/api/getOrganisations/' + loginService.getToken(),
-//                 method: 'POST',
-//                 data: data
-//             });
-//         };
+        trackingSystemService.startTime = function(id) {
+	        var deferred = $q.defer();
+            var url = config.serverUrl + '/api/schedule/start/'+ id +'/' + $rootScope.authToken;
+	        $http.post(url)
+		        .then(function (response) {
+			        $rootScope.userData = response.data.userData;
+			        $rootScope.authToken = response.data.result.token;
+			        $rootScope.tokenTime = response.data.result.time;
+			        $rootScope.userId = response.data.result.id;
+			        deferred.resolve(response.id);
+		        })
+		        .catch(function (error) {
+			        deferred.reject(error);
+		        });
+	        return deferred.promise;
+        };
+        trackingSystemService.stopTime = function(id) {
+	        var deferred = $q.defer();
+            var url = config.serverUrl + '/api/schedule/start/'+ id +'/' + $rootScope.authToken;
+	        // $http.post(url)
+		     //    .then(function (response) {
+			 //        $rootScope.userData = response.data.userData;
+			 //        $rootScope.authToken = response.data.result.token;
+			 //        $rootScope.tokenTime = response.data.result.time;
+			 //        $rootScope.userId = response.data.result.id;
+			        deferred.resolve();
+		     //    })
+		     //    .catch(function (error) {
+			 //        deferred.reject(error);
+		     //    });
+	        return deferred.promise;
+        };
 
-//         trackingSystemService.updateOrganisation = function(data) {
-//             return $http({
-//                 url: '/api/updateOrganisation/' + loginService.getToken(),
-//                 method: 'POST',
-//                 data: data
-//             });
-//         };
+        trackingSystemService.updateOrganisation = function(data) {
+            return $http({
+                url: '/api/updateOrganisation/' + loginService.getToken(),
+                method: 'POST',
+                data: data
+            });
+        };
 
-//         trackingSystemService.getWeekdaysUsers = function(idOrganisation, date) {
-//             return $http({
-//                 url: "/api/getWeekdaysUsers/" + loginService.getToken() + "/" + idOrganisation + "/" + date.toString(),
-//                 method: "get"
-//             });
-//         };
+        trackingSystemService.getWeekdaysUsers = function(idOrganisation, date) {
+            return $http({
+                url: "/api/getWeekdaysUsers/" + loginService.getToken() + "/" + idOrganisation + "/" + date.toString(),
+                method: "get"
+            });
+        };
 
 
-//         return trackingSystemService;
-//     }]);
+        return trackingSystemService;
+    }]);
 
 /**
  * Created by nastya on 17.04.17.
@@ -355,8 +388,8 @@ angular.module('app')
 	angular
 		.module('app')
 		.controller('mainCtrl', mainCtrl);
-	mainCtrl.$inject = ['$scope', 'loginService', '$state', '$rootScope'];
-	function mainCtrl($scope, loginService, $state, $rootScope) {
+	mainCtrl.$inject = ['$scope', 'loginService', '$state', '$rootScope', 'trackingSystemService'];
+	function mainCtrl($scope, loginService, $state, $rootScope, trackingSystemService) {
 
 		var vm = this;
 		vm.userData = angular.copy($rootScope.userData);
@@ -382,6 +415,18 @@ angular.module('app')
 			loginService.logOut();
 		}
 
+		$scope.$watch('vm.toggleTimer', function(newVal){
+			var id = $rootScope.timeId;
+			if(newVal === true)
+				trackingSystemService.startTime($rootScope.userId).then(function(id){
+					$rootScope.timeId = angular.copy(id);
+				});
+			else if(newVal === false)
+				trackingSystemService.stopTime(id).then(function(){
+					delete $rootScope.timeId;
+				});
+		});
+
 	}
 })();
 /**
@@ -396,8 +441,14 @@ angular.module('app')
         .controller('statisticCtrl', function ($scope) {
 
             var vm = this;
-
-        })
+            vm.dateFormat = 'MMM dd, yyyy';
+            vm.currentDay = new Date();
+            vm.popup = {
+                opened: false
+            };
+            vm.imagesStat = new Array(48);
+            _.fill(vm.imagesStat, {name: "assets/OfficeTime_icon_64.png", time: moment().seconds()}, 0, 48);
+        });
 })();
 /**
  * Created by nastya on 17.04.17.
@@ -448,6 +499,9 @@ function loginCtrl($scope, loginService, $state) {
         .controller('settingsCtrl', function ($scope) {
 
             var vm = this;
-
+            vm.intervalTime = 10;
+            vm.users = [
+                {name: 'User1 test'}
+            ]
         })
 })();

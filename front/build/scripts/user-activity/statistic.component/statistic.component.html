@@ -1,4 +1,36 @@
 <div class="container">
     <div class="row">
+        <div class="col-sm-6 col-xs-6">
+            <div class="row">
+                <div class="col-xs-2 col-sm-2">
+                    <h3>
+                        <a href="javascript:void(0)" ui-sref="start">
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </a>
+                    </h3>
+                </div>
+                <div class="col-xs-10 col-sm-10">
+                    <h3 class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{vm.dateFormat}}"
+                               ng-model="vm.currentDay" is-open="vm.popup.opened" close-text="Close"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.popup.opened = !vm.popup.opened">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </button>
+                          </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-sm-2 col-xs-2" ng-repeat="img in vm.imagesStat track by $index">
+                    <img ng-src="{{img.name}}"><br>
+                    <span>{{img.time}}</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

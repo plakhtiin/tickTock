@@ -3,7 +3,7 @@
         <div class="row">
             <div class="form-group col-md-12 col-xs-12" ng-class="{'has-error': login.username.invalid && login.username.touched}">
                 <input type="text" class="form-control" name="username" placeholder="Username" required
-                        ng-model="vm.userLogIn.username">
+                        ng-model="vm.userLogIn.username" autofocus>
                 <span class="help-block" ng-if="login.username.invalid && login.username.touched">username is required.</span>
             </div>
         </div>

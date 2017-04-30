@@ -27,13 +27,22 @@
                             url: '/statistics',
                             templateUrl: './scripts/user-activity/statistic.component/statistic.component.html',
                             title: 'Statistic',
-                            controller: 'mainCtrl'
+                            controller: 'statisticCtrl',
+                            controllerAs: 'vm'
+                        })
+                        .state('settings', {
+                            url: '/settings',
+                            templateUrl: './scripts/user-activity/settings.component/settings.component.html',
+                            title: 'Settings',
+                            controller: 'settingsCtrl',
+                            controllerAs: 'vm'
                         })
                         .state('new-user', {
                             url: '/new-user',
                             templateUrl: './scripts/user-activity/new-user.component/new-user.component.html',
-                            title: 'Statistic',
-                            controller: 'mainCtrl'
+                            title: 'New User',
+                            controller: 'newUserCtrl',
+                            controllerAs: 'vm'
                         });
                 }
             ]
