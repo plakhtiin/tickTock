@@ -34,6 +34,11 @@ makes it easier to serve the files by a web server.*
 ```
 gulp run
 ```
+### Build the Application
+#### In directory /front
+```
+gulp build-electron
+```
 
 
 [electron]: https://electron.atom.io/
