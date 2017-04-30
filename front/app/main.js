@@ -1,7 +1,7 @@
 // Module to control application life.
 var app = require('app');
 var path = require('path');
-// require('electron-debug')({showDevTools: true});
+var iconPath = path.join(__dirname, 'assets/icons/png/officetime_icon_64.png');
 
 // Module to create native browser window.
 var BrowserWindow = require('browser-window');
@@ -16,7 +16,7 @@ app.on('window-all-closed', function () {
 });
 // ElectronScreencapture({x: 0, y: 0, width: 800, height: 600}).then(function(result){
 // 	console.log("!!!!!");
-// 	console.log(result);
+	console.log(iconPath);
 // });
 
 // This method will be called when Electron has finished
@@ -24,10 +24,11 @@ app.on('window-all-closed', function () {
 app.on('ready', function () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
+      titleBarStyle: 'hidden',
       width: 610,
       height: 250 ,
-      icon: path.join(__dirname, 'assets/OfficeTime_icon.png')
-  })
+      icon: iconPath
+  });
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 

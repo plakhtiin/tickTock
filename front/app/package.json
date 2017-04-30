@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "AngularElectron",
   "main": "main.js",
-  "dependencies": {
+  "devDependencies": {
     "angular-ui-bootstrap": "^2.5.0"
   }
 }

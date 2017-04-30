@@ -3,11 +3,12 @@ var Q = require('q');
 var childProcess = require('child_process');
 var asar = require('asar');
 var jetpack = require('fs-jetpack');
+var os = require('os');
 
 var projectDir;
 var buildDir;
 var manifest;
-var appDir, nodeDir, bowerDir;
+var appDir, iconPath, icon;
 
 function init() {
 	// Project directory is the root of the application
@@ -16,10 +17,19 @@ function init() {
 	buildDir = projectDir.dir('./dist', { empty: true });
 	// angular application directory
 	appDir = projectDir.dir('./app');
-	nodeDir = projectDir.dir('./node_modules/angular-ui-bootstrap');
-	bowerDir = projectDir.dir('./bower_components');
 	// angular application's package.json file
 	manifest = appDir.read('./package.json', 'json');
+    switch (os.platform()) {
+        case 'darwin':
+            icon = 'resources/windows/OfficeTime_icon_64.ico';
+            break;
+        case 'linux':
+            icon = 'resources/windows/OfficeTime_icon_64.png';
+            break;
+        case 'win32':
+            icon = 'resources/windows/OfficeTime_icon_64.ico';
+            break;
+    }
 	return Q();
 }
 
@@ -34,13 +44,9 @@ function cleanupRuntime() {
 
 function createAsar() {
 	var deferred = Q.defer();
-    // asar.createPackage(nodeDir.path(), buildDir.path('resources/vendorNode.asar'), function () {
-    //     asar.createPackage(bowerDir.path(), buildDir.path('resources/vendorBower.asar'), function () {
-            asar.createPackage(appDir.path(), buildDir.path('resources/app.asar'), function () {
-                deferred.resolve();
-            });
-        // });
-    // });
+		asar.createPackage(appDir.path(), buildDir.path('resources/app.asar'), function () {
+			deferred.resolve();
+		});
 	return deferred.promise;
 }
 
@@ -48,12 +54,22 @@ function updateResources() {
 	var deferred = Q.defer();
 
 	// Copy your icon from resource folder into build folder.
-	projectDir.copy('resources/windows/OfficeTime_icon_64.ico', buildDir.path('OfficeTime_icon_64.ico'));
-
+    switch (os.platform()) {
+        case 'darwin':
+            iconPath = projectDir.copy('resources/windows/OfficeTime_icon_64.ico', buildDir.path('OfficeTime_icon_64.ico'));
+            break;
+        case 'linux':
+            iconPath = projectDir.copy('resources/windows/OfficeTime_icon_64.png', buildDir.path('OfficeTime_icon_64.png'));
+            break;
+        case 'win32':
+            iconPath = projectDir.copy('resources/windows/OfficeTime_icon_64.ico', buildDir.path('OfficeTime_icon_64.ico'));
+            break;
+    }
+	// projectDir.copy('resources/windows/OfficeTime_icon_64.ico', buildDir.path('OfficeTime_icon_64.ico'));
 	// Replace Electron icon for your own.
 	var rcedit = require('rcedit');
 	rcedit(buildDir.path('electron.exe'), {
-		'icon': projectDir.path('./resources/windows/OfficeTime_icon_64.ico'),
+		'icon': iconPath,
 		'version-string': {
 			'ProductName': manifest.name,
 			'FileDescription': manifest.description
@@ -90,9 +106,9 @@ function createInstaller() {
 		version: manifest.version,
 		src: buildDir.path(),
 		dest: projectDir.path('dist/Installer.exe'),
-		icon: buildDir.path('icon.ico'),
-		setupIcon: buildDir.path('icon.ico'),
-		banner: projectDir.path('resources/windows/OfficeTime_icon.png'),
+		icon: buildDir.path(icon),
+		setupIcon: buildDir.path(icon),
+		banner: iconPath
 	});
 	buildDir.write('installer.nsi', installScript);
 
