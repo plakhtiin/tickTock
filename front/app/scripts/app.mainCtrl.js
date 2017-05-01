@@ -42,14 +42,22 @@
 
 		$scope.$watch('vm.toggleTimer', function(newVal){
 			var id = localStorage.timeId;
-			if(newVal === true)
-				trackingSystemService.startTime(localStorage.userId).then(function(id){
-                    localStorage.timeId = angular.copy(id);
-				});
-			else if(newVal === false)
-				trackingSystemService.stopTime(id).then(function(){
-					delete localStorage.timeId;
-				});
+			if(angular.isDefined(newVal)) {
+				if (newVal === true) {
+					iconPath = 'assets/OfficeTime_icon.png';
+					notifyText = 'Tracker is on';
+					trackingSystemService.startTime(localStorage.userId).then(function (id) {
+						localStorage.timeId = angular.copy(id);
+					});
+				} else if (newVal === false) {
+					iconPath = "assets/icons/png/officetime_icon_128.png";
+					notifyText = 'Tracker is off';
+					trackingSystemService.stopTime(id).then(function () {
+						delete localStorage.timeId;
+					});
+				}
+				notify();
+			}
 		});
 
 	}

@@ -19,6 +19,47 @@
     <ui-view></ui-view>
     <!-- build:js scripts/vendor.js -->
     <script>
+	    var notification = new Notification("Tick-Tock");
+	    var iconPath = '';
+	    var notifyText = '';
+	    function notify() {
+		    if (!("Notification" in window)) {
+			    alert("This browser does not support desktop notification");
+		    }
+		    else if (Notification.permission === "granted") {
+			    var options = {
+				    body: notifyText,
+				    icon: iconPath,
+				    dir : "ltr",
+				    sound: true,
+				    wait: true
+			    };
+			    notification = new Notification("Tick-Tock",options);
+		    }
+		    else if (Notification.permission !== 'denied') {
+			    Notification.requestPermission(function (permission) {
+				    if (!('permission' in Notification)) {
+					    Notification.permission = permission;
+				    }
+
+				    if (permission === "granted") {
+					    var options = {
+						    body: notifyText,
+						    icon: iconPath,
+						    dir : "ltr",
+						    sound: true,
+						    wait: true
+					    };
+					    notification = new Notification("Tick-Tock",options);
+				    }
+			    });
+		    }
+		    notification.onclick = function(event) {
+			    notification.close()
+		    }
+	    }
+    </script>
+    <script>
         document.addEventListener("keydown", function (e) {
             if (e.which === 123) {
                 require('remote').getCurrentWindow().toggleDevTools();

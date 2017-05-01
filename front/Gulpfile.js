@@ -22,7 +22,6 @@ function cb(data){
     console.log('loolollo');
     console.log(data);
 }
-
 // -------------------------------------
 // Tasks
 // -------------------------------------
