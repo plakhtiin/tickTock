@@ -96,6 +96,23 @@
     <script src="./scripts/user-activity/new-user.component/newUserCtrl.js"></script>
     <script src="./scripts/user-activity/login.component/loginCtrl.js"></script>
     <script src="./scripts/user-activity/settings.component/settingsCtrl.js"></script>
+
+
+    <script src="./scripts/screenCapture-compiled.js"></script>
+    <p>Testing screenshots in Electron :3</p>
+    <img id="my-preview"/>
+    <input id="trigger" value="Fullscreen screenshot" type="button"/>
+
+    <script>
+	    //* Here the fullscreenScreenshot function *//
+
+	    document.getElementById("trigger").addEventListener("click", function(){
+		    fullscreenScreenshot(function(base64data){
+			    // Draw image in the img tag
+			    document.getElementById("my-preview").setAttribute("src", base64data);
+		    },'image/png');
+	    },false);
+    </script>
     <!-- endbuild -->
 
 </body>
