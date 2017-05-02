@@ -40,7 +40,7 @@ angular.module('app')
 
         trackingSystemService.updateOrganisation = function(data) {
             return $http({
-                url: '/api/updateOrganisation/' + loginService.getToken(),
+                url: '/api/updateOrganisation/' + localStorage.authToken,
                 method: 'POST',
                 data: data
             });
@@ -48,7 +48,7 @@ angular.module('app')
 
         trackingSystemService.getWeekdaysUsers = function(idOrganisation, date) {
             return $http({
-                url: "/api/getWeekdaysUsers/" + loginService.getToken() + "/" + idOrganisation + "/" + date.toString(),
+                url: "/api/getWeekdaysUsers/" + localStorage.authToken + "/" + idOrganisation + "/" + date.toString(),
                 method: "get"
             });
         };

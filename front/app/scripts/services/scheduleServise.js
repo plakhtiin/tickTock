@@ -6,7 +6,7 @@ angular.module('app')
 
         scheduleService.getScheduleByDay = function(data) {
             var deferred = $q.defer();
-            $http.post('/api/schedule/delta/' + loginService.getToken(), data)
+            $http.post('/api/schedule/delta/' + localStorage.authToken, data)
                 .then(function (response) {
                     deferred.resolve(response);
                 })
@@ -18,7 +18,7 @@ angular.module('app')
 
          scheduleService.getPoint = function(pointId, date) {
              var deferred = $q.defer();
-             $http.get('/api/point/' + pointId+ "/" + loginService.getToken())
+             $http.get('/api/point/' + pointId+ "/" + localStorage.authToken)
                  .then(function (response) {
                      deferred.resolve(response);
                  })

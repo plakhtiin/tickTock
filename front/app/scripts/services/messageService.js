@@ -7,7 +7,7 @@ angular.module('app')
 
         messageService.sendMessage = function(pointId, msg) {
 	        var deferred = $q.defer();
-	        $http.post('/api/sendmessage/' + pointId + "/" + loginService.getToken(), msg)
+	        $http.post('/api/sendmessage/' + pointId + "/" + localStorage.authToken, msg)
 		        .then(function (response) {
 			        deferred.resolve(response);
 		        })

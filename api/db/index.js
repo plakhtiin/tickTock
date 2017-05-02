@@ -67,7 +67,7 @@ module.exports = {
     },
 
 	createUser: function(data, cb) {
-        _db.collection("users").insert({
+        _db.collection("users").insertOne({
 	        username: data.username,
 	        firstName: data.firstName,
 	        lastName: data.lastName,

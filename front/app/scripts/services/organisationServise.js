@@ -7,7 +7,7 @@ angular.module('app')
 
         organisationService.getPoints = function(orgId, date) {
             var deferred = $q.defer();
-            $http.get('/api/organisation/points/' + orgId+ "/" + loginService.getToken())
+            $http.get('/api/organisation/points/' + orgId+ "/" + localStorage.authToken)
                 .then(function (response) {
                     deferred.resolve(response);
                 })
@@ -19,7 +19,7 @@ angular.module('app')
 
          organisationService.updatePoint = function(pointId, data) {
              var deferred = $q.defer();
-             $http.post('/api/updatepoint/' + pointId+ "/" + loginService.getToken(), data)
+             $http.post('/api/updatepoint/' + pointId+ "/" + localStorage.authToken, data)
                  .then(function (response) {
                      deferred.resolve(response);
                  })
@@ -31,7 +31,7 @@ angular.module('app')
 
         organisationService.getOrganization = function(orgId, date) {
             var deferred = $q.defer();
-            $http.get('/api/organization/' + orgId +  "/" + loginService.getToken())
+            $http.get('/api/organization/' + orgId +  "/" + localStorage.authToken)
                 .then(function (response) {
                     deferred.resolve(response);
                 })
@@ -42,7 +42,7 @@ angular.module('app')
         };
         organisationService.getOrganizations = function(userId) {
             var deferred = $q.defer();
-            $http.get('/api/organizations/' + userId +  "/" + loginService.getToken())
+            $http.get('/api/organizations/' + userId +  "/" + localStorage.authToken)
                 .then(function (response) {
                     deferred.resolve(response);
                 })

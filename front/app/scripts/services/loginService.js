@@ -39,7 +39,7 @@ angular.module('app')
                 var data  = JSON.parse(localStorage.userData);
                 if(!data){
                     var id = localStorage.userId;
-                    $http.get(config.serverUrl + '/api/user/data/' + id +'/'+ loginService.getToken())
+                    $http.get(config.serverUrl + '/api/user/data/' + id +'/'+ localStorage.authToken)
                         .then(function (response) {
                             deferred.resolve(response);
                         })

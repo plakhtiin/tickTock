@@ -7,7 +7,7 @@ angular.module('app')
 
         mainService.getUser = function (userId) {
             var deferred = $q.defer();
-            $http.get(config.serverUrl + '/api/user/data/' + userId + '/' + loginService.getToken())
+            $http.get(config.serverUrl + '/api/user/data/' + userId + '/' + localStorage.authToken)
                 .then(function (response) {
                     deferred.resolve(response);
                 })
@@ -18,7 +18,7 @@ angular.module('app')
         };
         mainService.updateUser = function (userId, data) {
             var deferred = $q.defer();
-            $http.post(config.serverUrl + '/api/updateuser/data/' + userId + '/' + loginService.getToken(), data)
+            $http.post(config.serverUrl + '/api/updateuser/data/' + userId + '/' + localStorage.authToken, data)
                 .then(function (response) {
                     deferred.resolve(response);
                 })
@@ -29,7 +29,7 @@ angular.module('app')
         };
         mainService.createUser = function (data) {
             var deferred = $q.defer();
-            $http.post(config.serverUrl + '/api/createuser/data/'+ loginService.getToken(), data)
+            $http.post(config.serverUrl + '/api/createuser/data/'+ localStorage.authToken, data)
                 .then(function (response) {
                     deferred.resolve(response);
                 })
