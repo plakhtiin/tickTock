@@ -30,5 +30,14 @@ ManageUserService.prototype.updateUser = function(userId, data, cb) {
         }
     });
 };
+ManageUserService.prototype.createUser = function(data, cb) {
+    db.createUser(data, function(err, result) {
+        if (err) {
+            cb(err, null);
+        } else {
+            cb(null, result);
+        }
+    });
+};
 
 module.exports = new ManageUserService();

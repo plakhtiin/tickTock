@@ -85,6 +85,23 @@ app.use(bodyParser.json())
         }
     });
 })
+    .post('/api/createuser/data/:token', function (req, res) {
+    loginService.isValidToken(req.params.token, function (isValid) {
+        if (isValid) {
+            manageUserService.createUser(req.body, function (err, user) {
+                if (err) {
+                    res.send(err);
+                }
+                else {
+                    res.send(user);
+                }
+            });
+        }
+        else {
+            res.status(403).send('Error');
+        }
+    });
+})
     .post('/api/schedule/start/:userId/:token', function (req, res) {
     loginService.isValidToken(req.params.token, function (isValid) {
         if (isValid) {

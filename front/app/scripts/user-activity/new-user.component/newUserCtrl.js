@@ -7,14 +7,20 @@
     angular
         .module('app')
 
-        .controller('newUserCtrl', function ($scope) {
+        .controller('newUserCtrl', function ($scope, mainService) {
 
             var vm = this;
+            vm.user = {};
             vm.roles = {
                 admin: 'Administrator',
                 manager: 'Manager',
                 user: 'User'
             };
+            vm.createUser = createUser;
+
+            function createUser(){
+	            mainService.createUser(vm.user)
+            }
 
         })
 })();

@@ -13,30 +13,30 @@
             <form name="newUser">
                 <div class="form-group" ng-class="{'has-error': firstName.invalid && firstName.touched}">
                     <label>First name</label>
-                    <input type="text" class="form-control" name="firstName" required ng-model="user.firstName" >
+                    <input type="text" class="form-control" name="firstName" required ng-model="vm.user.firstName" >
                 </div>
                 <div class="form-group" ng-class="{'has-error': lastName.invalid && lastName.touched}">
                     <label>Name</label>
-                    <input type="text" class="form-control" name="lastName" required ng-model="user.lastName">
+                    <input type="text" class="form-control" name="lastName" required ng-model="vm.user.lastName">
                 </div>
                 <div class="form-group" ng-class="{'has-error': username.invalid && username.touched}">
                     <label>Username</label>
-                    <input type="text" class="form-control" name="username" required ng-model="user.username">
+                    <input type="text" class="form-control" name="username" required ng-model="vm.user.username">
                 </div>
                 <div class="form-group" ng-class="{'has-error': email.invalid && email.touched}">
                     <label>E-mail</label>
-                    <input type="email" class="form-control" name="email" required ng-model="user.email">
+                    <input type="email" class="form-control" name="email" required ng-model="vm.user.email">
                 </div>
                 <div class="form-group" ng-class="{'has-error': password.invalid && password.touched}">
                     <label>Password</label>
-                    <input type="password" class="form-control" name="password" required ng-model="user.password">
+                    <input type="password" class="form-control" name="password" required ng-model="vm.user.password">
                 </div>
                 <div class="form-group"  ng-class="{'has-error': role.touched}">
                     <label>Role</label>
-                    <select name="role" ng-model="user.role" class="form-control" ng-options="key as item for (key, item) in vm.roles" required></select>
+                    <select name="role" ng-model="vm.user.role" class="form-control" ng-options="key as item for (key, item) in vm.roles" required></select>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary" type="submit" ng-disabled="newUser.invalid">Add new user</button>
+                    <button class="btn btn-primary" type="submit" ng-disabled="newUser.invalid" ng-click="vm.createUser()" >Add new user</button>
                 </div>
             </form>
         </div>

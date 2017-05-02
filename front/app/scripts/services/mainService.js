@@ -27,6 +27,17 @@ angular.module('app')
                 });
             return deferred.promise;
         };
+        mainService.createUser = function (data) {
+            var deferred = $q.defer();
+            $http.post(config.serverUrl + '/api/createuser/data/'+ loginService.getToken(), data)
+                .then(function (response) {
+                    deferred.resolve(response);
+                })
+                .catch(function (error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        };
 
         return mainService;
     }]);
