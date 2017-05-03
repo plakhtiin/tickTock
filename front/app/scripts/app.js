@@ -8,7 +8,8 @@
         'ui.bootstrap',
         'angular-md5',
         'ngCookies',
-        'uiSwitch'
+        'uiSwitch',
+        'oitozero.ngSweetAlert'
     ]).run(RunApp).config(['$qProvider', function ($qProvider) {
         $qProvider.errorOnUnhandledRejections(false);
     }]);

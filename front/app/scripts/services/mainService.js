@@ -38,6 +38,28 @@ angular.module('app')
                 });
             return deferred.promise;
         };
+        mainService.getUsers = function () {
+            var deferred = $q.defer();
+            $http.get(config.serverUrl + '/api/users/data/'+ localStorage.authToken)
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                })
+                .catch(function (error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        };
+        mainService.removeUser = function (user) {
+            var deferred = $q.defer();
+            $http.post(config.serverUrl + '/api/removeuser/data/'+ localStorage.authToken, user)
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                })
+                .catch(function (error) {
+                    deferred.reject(error);
+                });
+            return deferred.promise;
+        };
 
         return mainService;
     }]);

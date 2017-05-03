@@ -19,6 +19,7 @@
     "angular-cookies": "latest",
     "moment": "^2.18.1",
     "angular-ui-switch": "^0.1.1",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "ngSweetAlert": "angular-sweetalert#^1.1.2"
   }
 }

@@ -15,15 +15,14 @@ module.exports = {
             return callback(err);
         });
     },
-	getUsers: function(userId, cb) {
+	getUsers: function(cb) {
 		_db.collection("users").find({
 		}, function(err, result) {
 			if (err) {
 				cb(err, null);
 			} else {
-				result.toArray(function(err, organisations) {
-					cb(null, organisations);
-
+				result.toArray(function(err, users) {
+					cb(null, users);
 				});
 			}
 		});
@@ -74,6 +73,19 @@ module.exports = {
 	        role: data.role,
 	        password: data.password,
 	        email: data.email
+        }, function(err, result) {
+            if (err) {
+                cb(err, null);
+            } else {
+                cb(null, result);
+            }
+        });
+    },
+	removeUser: function(data, cb) {
+        _db.collection("users").remove({
+	        _id: new ObjectID(data._id)
+        },{
+	        justOne: true
         }, function(err, result) {
             if (err) {
                 cb(err, null);

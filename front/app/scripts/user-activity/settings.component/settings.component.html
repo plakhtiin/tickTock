@@ -42,8 +42,13 @@
             <div>
                 <div class="list-group table-of-contents page" id="bs-example-navbar-collapse-1">
                     <ul class="list-group content style-scrollbar" style="width: 100%;">
-                        <li class="list-group-item" ng-repeat="user in vm.users track by $index">
-                            {{user.name}}
+                        <li class="list-group-item" ng-repeat="user in vm.users track by $index" ng-class="{'active': vm.clicked == user._id}" ng-click="vm.clicked = user._id">
+                            <span>{{user.firstName}} {{user.lastName}}</span>
+                            <span ng-hide="vm.clicked == user._id" class="pull-right">{{vm.roles[user.role]}}</span>
+                            <span ng-show="vm.clicked == user._id" class="pull-right">
+                                <i class="fa fa-pencil" aria-hidden="true" style="margin-right:10px;"></i>
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.removeUser(user)"></i>
+                            </span>
                         </li>
                     </ul>
                 </div>
