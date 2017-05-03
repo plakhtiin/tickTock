@@ -15,6 +15,8 @@
 		vm.isMeredian = false;
 		vm.intervalTime = new Date();
 		vm.users = [];
+		vm.user = {};
+		vm.userEdit = false;
 		vm.clicked = '';
 		vm.roles = {
 			admin: 'Administrator',
@@ -23,6 +25,7 @@
 		};
 
 		vm.removeUser = removeUser;
+		vm.updateUser = updateUser;
 
 		mainService.getUsers().then(function (data) {
 			vm.users = data;
@@ -48,6 +51,15 @@
 						})
 					}
 				});
+		}
+
+		function updateUser(user){
+			mainService.updateUser(user).then(function () {
+				mainService.getUsers().then(function (data) {
+					vm.users = data;
+					vm.userEdit = false;
+				});
+			});
 		}
 	}
 })();

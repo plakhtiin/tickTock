@@ -16,9 +16,9 @@ angular.module('app')
                 });
             return deferred.promise;
         };
-        mainService.updateUser = function (userId, data) {
+        mainService.updateUser = function (data) {
             var deferred = $q.defer();
-            $http.post(config.serverUrl + '/api/updateuser/data/' + userId + '/' + localStorage.authToken, data)
+            $http.post(config.serverUrl + '/api/updateuser/data/' + localStorage.authToken, data)
                 .then(function (response) {
                     deferred.resolve(response);
                 })

@@ -85,10 +85,10 @@ app.use(bodyParser.json())
 			}
 		});
 	})
-	.post('/api/updateuser/data/:userId/:token', function (req, res) {
+	.post('/api/updateuser/data/:token', function (req, res) {
 		loginService.isValidToken(req.params.token, function (isValid) {
 			if (isValid) {
-				manageUserService.updateUser(req.params.userId, req.body, function (err, user) {
+				manageUserService.updateUser(req.body, function (err, user) {
 					if (err) {
 						res.send(err);
 					}

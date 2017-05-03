@@ -94,6 +94,26 @@ module.exports = {
             }
         });
     },
+	updateUser: function(data, cb) {
+        _db.collection("users").update({
+	        _id: new ObjectID(data._id)
+        },{
+	        $set: {
+		        username: data.username,
+		        firstName: data.firstName,
+		        lastName: data.lastName,
+		        role: data.role,
+		        password: data.password,
+		        email: data.email
+	        }
+        }, function(err, result) {
+            if (err) {
+                cb(err, null);
+            } else {
+                cb(null, result);
+            }
+        });
+    },
 
     startUserDay: function(userId, cb) {
         _db.collection("schedule").insert({

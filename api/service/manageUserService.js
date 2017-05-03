@@ -21,8 +21,8 @@ ManageUserService.prototype.getUserData = function(userId, cb) {
     });
 };
 
-ManageUserService.prototype.updateUser = function(userId, data, cb) {
-    db.updateUser(userId, data, function(err, result) {
+ManageUserService.prototype.updateUser = function(data, cb) {
+    db.updateUser(data, function(err, result) {
         if (err) {
             cb(err, null);
         } else {
