@@ -74,6 +74,10 @@ header {
     background-color: #F5F5F5;
 }
 .style-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #5cb85c;
+    background-color: #df691a;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
+}
+.switch.checked{
+    background: #df691a !important;
+    border-color: #df691a !important;
 }

@@ -46,7 +46,7 @@
 
 		$scope.$watch('vm.toggleTimer', function(newVal){
 			var id = localStorage.timeId;
-			if(angular.isDefined(newVal)) {
+			if(angular.isDefined(newVal) && newVal != $rootScope.trackerSwitch) {
 				if (newVal === true) {
 					iconPath = 'assets/OfficeTime_icon.png';
 					notifyText = 'Tracker is on';
