@@ -15,6 +15,8 @@
 		vm.toggleTimer = false;
 		vm.logOut = logOut;
 
+		vm.time = (new Date()).getMinutes();
+
 		if($rootScope.trackerSwitch)
 			vm.toggleTimer = true;
 
@@ -45,9 +47,11 @@
 		}
 
 		$scope.$watch('vm.toggleTimer', function(newVal){
+			//стеження за змінною, яка відповідає за станом тайм трекеру, його значення зберігається у локальному сховищі, для доступності у будь-якому місці програмного забезпечення
 			var id = localStorage.timeId;
 			if(angular.isDefined(newVal) && newVal != $rootScope.trackerSwitch) {
 				if (newVal === true) {
+					//якщо тайм-трекер вмикається чи вимикається, створюється екземпляр нового системного сповіщення клієнту та час вмикання чи вимикання тайм трекеру фіксується в БД у статистиці кожного користувача.
 					iconPath = 'assets/OfficeTime_icon.png';
 					notifyText = 'Tracker is on';
 					trackingSystemService.startTime(localStorage.userId).then(function (id) {

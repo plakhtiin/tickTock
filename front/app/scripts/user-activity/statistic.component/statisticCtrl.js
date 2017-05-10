@@ -15,7 +15,10 @@
             vm.popup = {
                 opened: false
             };
-            vm.imagesStat = new Array(48);
-            _.fill(vm.imagesStat, {name: "assets/OfficeTime_icon_64.png", time: moment().seconds()}, 0, 48);
+            var num = 423;
+            vm.imagesStat = new Array(5);
+            for(var i=0; i<5; i++){
+	            vm.imagesStat[i] = {name: "assets/statistic/Selection_"+(num+i)+".png", time: (new Date()).getMilliseconds()}
+            }
         });
 })();

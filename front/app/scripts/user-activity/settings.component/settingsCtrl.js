@@ -13,7 +13,7 @@
 
 		var vm = this;
 		vm.isMeredian = false;
-		vm.intervalTime = new Date();
+		vm.intervalTime = new Date(moment("00:10", 'hh:mm'));
 		vm.users = [];
 		vm.user = {};
 		vm.userEdit = false;
