@@ -1,0 +1,24 @@
+{
+  "name": "tick-tock",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "async": "latest",
+    "body-parser": "latest",
+    "express": "latest",
+    "jsonwebtoken": "latest",
+    "moment": "^2.18.1",
+    "mongodb": "latest",
+    "node-schedule": "latest",
+    "nodemailer": "latest",
+    "nodemailer-smtp-transport": "latest",
+    "socket.io": "latest"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

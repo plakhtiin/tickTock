@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-xs-6">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6">
+                    <h3>
+                        <a href="javascript:void(0)" ui-sref="start">
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </a>
+                    </h3>
+                </div>
+                <div class="col-xs-6 col-sm-6">
+                    <h3>
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <label>Time interval</label>
+                    <input uib-timepicker ng-model="vm.intervalTime" hour-step="1" minute-step="1" show-meridian="ismeridian">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <button class="btn btn-success">Save changes</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xs-6">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="user in vm.users">
+                    {{user.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

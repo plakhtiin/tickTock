@@ -1,0 +1,20 @@
+body{
+    background-image: url("../Login_Form.png");
+    padding: 20px;
+    height:initial;
+}
+.user-log-in{
+    background-image: url("../login_form.png") !important;
+    background-repeat: round;
+    border-radius: 10px;
+    padding: 25px;;
+}
+.timer-switch{
+    padding-top: 25px;
+}
+a{
+    color:#ebebeb;
+}
+a:hover{
+    color:#B3DAE8;
+}

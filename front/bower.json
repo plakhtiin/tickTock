@@ -1,0 +1,25 @@
+{
+  "name": "AngularElectron",
+  "version": "0.0.0",
+  "description": "AngularElectron",
+  "main": "app.js",
+  "author": {
+    "name": "itse4",
+    "email": ""
+  },
+  "dependencies": {
+    "angular": "latest",
+    "angular-material": "latest",
+    "bootstrap": "latest",
+    "angular-ui-router": "latest",
+    "font-awesome": "^4.7.0",
+    "angular-ui-bootstrap": "^2.5.0",
+    "jquery": "latest",
+    "angular-md5": "latest",
+    "angular-cookies": "latest",
+    "moment": "^2.18.1",
+    "angular-ui-switch": "^0.1.1",
+    "lodash": "^4.17.4",
+    "ngSweetAlert": "angular-sweetalert#^1.1.2"
+  }
+}
