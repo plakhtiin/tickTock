@@ -12,3 +12,5 @@ public/dist
 /frontAng2/build/node_modules/
 /frontAng2/app/bower_components/
 /frontAng2/app/node_modules/
+/node_modules/
+/frontAng2/packages/
