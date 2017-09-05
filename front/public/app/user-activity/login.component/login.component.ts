@@ -1,6 +1,6 @@
 import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 import {Http} from '@angular/http';
-import {loginService} from '../../services/loginService';
+import {LoginService} from '../../services/loginService';
 export class UserLogIn{
     email: string;
     password: string;
@@ -15,26 +15,28 @@ export class UserLogIn{
 export class LogInComponent implements OnInit{
     userLogIn: UserLogIn = new UserLogIn();
 
-    constructor(){
+    constructor(private loginService : LoginService){
         this.userLogIn.email = '';
         this.userLogIn.password = '';
     }
 
     ngOnInit(){
-        loginService.getToken().then(function (data) {
-            if (data) {
-                // $state.go('start');
-                // $location.path('/start');
-            }
-        });
+        this.loginService.getToken()
+        //     .then(function (data) {
+        //     if (data) {
+        //         // $state.go('start');
+        //         // $location.path('/start');
+        //     }
+        // });
     }
 
     onSubmit(){
-        loginService.login(this.userLogIn.email ,this.userLogIn.password).then(function(data){
-            // $state.go('start');
-        }, function (err) {
-
-        });
+        this.loginService.login(this.userLogIn.email ,this.userLogIn.password)
+            // .then(function (data) {
+            //     // $state.go('start');
+            // }, function (err) {
+            //
+            // });
         console.log('log in!')
     }
 
