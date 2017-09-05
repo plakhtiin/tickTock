@@ -7,3 +7,8 @@ tmp
 .idea
 public/node_modules/
 public/dist
+/frontAng2/dist/
+/frontAng2/build/bower_components/
+/frontAng2/build/node_modules/
+/frontAng2/app/bower_components/
+/frontAng2/app/node_modules/
